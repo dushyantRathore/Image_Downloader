@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+</head>
+<body>
+
+<h1>Image Downloader</h1>
+
+<form action = "{{ url_for('getdata') }}" method="post">
+
+    <label>Enter the URL of the webpage</label>
+    <input type="text" name="url">
+    <br>
+    <br>
+    <input type="submit" value="Submit">
+
+</form>
+
+</body>
+</html>
