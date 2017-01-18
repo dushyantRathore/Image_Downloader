@@ -79,7 +79,7 @@ def getdata():
         print "Total Images in the webpage : "  + str(len(image_list))
         print image_list
 
-        return "<h1 align='center'>The Images have been Downloaded</h1>"
+        return render_template("Images.html" , image_list = image_list)
 
 
 if __name__ == "__main__":
