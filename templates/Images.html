@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Images</title>
+</head>
+<body>
+
+<h1 align="center">The following images in the Webpage have been downloaded</h1>
+<br><br>
+
+<ul>
+    {% for i in image_list: %}
+    <li style = "list-style-type:none;display:inline; padding:20px;">
+        <img src = "{{ i }}">
+    </li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
