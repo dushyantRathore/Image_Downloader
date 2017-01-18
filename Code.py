@@ -31,7 +31,6 @@ def getdata():
         for p in i:
             loc = p.get('src') # Get the source url of the image
             l = len(loc) # Get the length of the url
-            image_list.append(loc)
 
             # print loc[l-3] # Get the third last character for the type of image
 
@@ -41,15 +40,18 @@ def getdata():
                 if loc[:1] == ".":
                     loc = loc.strip(loc[:1])
                     final_url = str(url) + str(loc)
+                    image_list.append(final_url)
                     final_image = str(r) + ".png"
                     urllib.urlretrieve(final_url, final_image)
 
                 elif loc[:1] =='/':
                     final_url = str(url) + str(loc)
+                    image_list.append(final_url)
                     final_image = str(r) + ".png"
                     urllib.urlretrieve(final_url, final_image)
 
                 else:
+                    image_list.append(loc)
                     r = random.randrange(1,1000)
                     final_image = str(r) + ".png"
                     urllib.urlretrieve(loc, final_image)
@@ -58,15 +60,18 @@ def getdata():
                 if loc[:1] == ".":
                     loc = loc.strip(loc[:1])
                     final_url = str(url) + str(loc)
+                    image_list.append(final_url)
                     final_image = str(r) + ".jpg"
                     urllib.urlretrieve(final_url, final_image)
 
                 elif loc[:1] == '/':
                     final_url = str(url) + str(loc)
+                    image_list.append(final_url)
                     final_image = str(r) + ".jpg"
                     urllib.urlretrieve(final_url, final_image)
 
                 else:
+                    image_list.append(loc)
                     r = random.randrange(1, 1000)
                     final_image = str(r) + ".jpg"
                     urllib.urlretrieve(loc, final_image)
@@ -74,7 +79,7 @@ def getdata():
         print "Total Images in the webpage : "  + str(len(image_list))
         print image_list
 
-        return "<h1 align='center'>Images have been Downloaded</h1>"
+        return "<h1 align='center'>The Images have been Downloaded</h1>"
 
 
 if __name__ == "__main__":
