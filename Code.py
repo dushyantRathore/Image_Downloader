@@ -26,26 +26,55 @@ def getdata():
 
         i = soup.find_all('img')
 
+        image_list = []
+
         for p in i:
-            loc = p.get('src')
+            loc = p.get('src') # Get the source url of the image
+            l = len(loc) # Get the length of the url
+            image_list.append(loc)
+
+            # print loc[l-3] # Get the third last character for the type of image
+
             r = random.randrange(1,1000)
 
-            image_final = str(r) + ".jpg"
+            if loc[l-3] == 'p': # For png Image
+                if loc[:1] == ".":
+                    loc = loc.strip(loc[:1])
+                    final_url = str(url) + str(loc)
+                    final_image = str(r) + ".png"
+                    urllib.urlretrieve(final_url, final_image)
 
-            if loc[:1] == '.':
-                loc = loc.strip(loc[:1])
-                image = str(url) + str(loc)
+                elif loc[:1] =='/':
+                    final_url = str(url) + str(loc)
+                    final_image = str(r) + ".png"
+                    urllib.urlretrieve(final_url, final_image)
 
-                urllib.urlretrieve(image, image_final)
+                else:
+                    r = random.randrange(1,1000)
+                    final_image = str(r) + ".png"
+                    urllib.urlretrieve(loc, final_image)
 
-            elif loc[:1] == '/':
-                image = str(url) + str(loc)
-                urllib.urlretrieve(image, image_final)
+            elif loc[l-3] == 'j': # For jpg Image
+                if loc[:1] == ".":
+                    loc = loc.strip(loc[:1])
+                    final_url = str(url) + str(loc)
+                    final_image = str(r) + ".jpg"
+                    urllib.urlretrieve(final_url, final_image)
 
-            else:
-                urllib.urlretrieve(loc, image_final)
+                elif loc[:1] == '/':
+                    final_url = str(url) + str(loc)
+                    final_image = str(r) + ".jpg"
+                    urllib.urlretrieve(final_url, final_image)
 
-        return "<h1>Images have been Downloaded</h1>"
+                else:
+                    r = random.randrange(1, 1000)
+                    final_image = str(r) + ".jpg"
+                    urllib.urlretrieve(loc, final_image)
+
+        print "Total Images in the webpage : "  + str(len(image_list))
+        print image_list
+
+        return "<h1 align='center'>Images have been Downloaded</h1>"
 
 
 if __name__ == "__main__":
